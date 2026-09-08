@@ -200,7 +200,7 @@
       top: 0; left: 0;
       height: 3px;
       width: 0%;
-      background: linear-gradient(90deg, var(--arena), var(--gold), var(--terracota), var(--gold));
+      background: linear-gradient(90deg, var(--arena), var(--gold), #97c9e8, #7accaf, #faf79d, #eba275, var(--gold));
       background-size: 200% 100%;
       animation: shimmerBar 3s ease-in-out infinite;
       z-index: 1000;
@@ -592,7 +592,7 @@
        ITINERARY — LUXURY CARD DESIGN
     ══════════════════════════════════════════════════════ */
     #itinerario {
-      background: linear-gradient(180deg, #2A2218 0%, #3A3028 40%, #2A2218 100%);
+      background: linear-gradient(175deg, #2B1F3D 0%, #2A2C4E 34%, #1D3348 62%, #17352F 88%, #2B1F3D 100%);
       padding: 80px 20px;
       color: var(--crema);
     }
@@ -1059,7 +1059,7 @@
 
     /* ── FOOTER ──────────────────────────────────────── */
     footer {
-      background: linear-gradient(180deg, #2A2218, var(--text));
+      background: linear-gradient(180deg, #2B1F3D 0%, #22304A 55%, #17352F 100%);
       color: var(--bg);
       text-align: center;
       padding: 64px 24px 52px;
@@ -2913,6 +2913,82 @@
     #rsvp .eyebrow             { font-size: 12px !important; font-weight: 700 !important; }
     #rsvp p, #rsvp .rsvp-asignados label { font-weight: 500 !important; }
     #rsvp #rsvp-pases-display > div:first-child { font-size: 13px !important; }
+
+    /* ══════════════════════════════════════════════════════
+       ACENTOS SUAVES — menta / amarillo / durazno de la paleta
+       Toques puntuales y de baja opacidad: nunca bloques de color.
+    ══════════════════════════════════════════════════════ */
+    :root {
+      --menta:   #7accaf;
+      --sol:     #faf79d;
+      --durazno: #eba275;
+    }
+
+    /* Lineas y filetes: degradado tenue de toda la paleta */
+    .rd-line,
+    .ornament-divider .line,
+    .loc-divider-v2 .line,
+    .quote-rule,
+    .ft-rule {
+      background-image: linear-gradient(90deg,
+        rgba(192,157,224,.55), rgba(235,160,191,.5), rgba(151,201,232,.5),
+        rgba(122,204,175,.45), rgba(250,247,157,.55), rgba(235,162,117,.5)) !important;
+    }
+
+    /* Halo calido detras del contador y de la card del sobre */
+    .cd-frame  { box-shadow: 0 18px 48px rgba(43,31,61,.10), 0 0 0 1px rgba(250,247,157,.35) inset; }
+    .kids-card { box-shadow: 0 16px 44px rgba(43,31,61,.09), 0 0 0 1px rgba(122,204,175,.28) inset; }
+
+    /* Itinerario: puntos de la linea del tiempo en menta */
+    #itinerario .tl-dot { box-shadow: 0 0 0 4px rgba(122,204,175,.28), 0 0 16px rgba(122,204,175,.45); }
+
+    /* Boton de mapa y de calendario: chispa durazno al borde */
+    .btn-maps  { box-shadow: 0 8px 22px rgba(43,31,61,.16), 0 0 0 1px rgba(235,162,117,.35); }
+
+    /* Footer sobre el degradado nuevo */
+    footer .ft-tagline  { color: rgba(255,254,249,.72); }
+    footer .credit-label{ color: rgba(255,254,249,.6); }
+
+    /* ── Colores a evitar: bolitas bajo el texto ── */
+    .dc-avoid-swatches {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin: 14px auto 0;
+    }
+    .dc-swatch {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(74,51,88,.28);
+      box-shadow: 0 2px 6px rgba(58,48,40,.14);
+      position: relative;
+    }
+    .dc-swatch::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, transparent 46%, rgba(74,51,88,.5) 46%,
+                  rgba(74,51,88,.5) 54%, transparent 54%);
+    }
+
+    /* ── Padres: fade alternado entre las dos novias ── */
+    .padres-stage {
+      position: relative;
+      min-height: 190px;
+      margin: 8px auto 0;
+      max-width: 340px;
+    }
+    .padres-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .9s ease;
+      pointer-events: none;
+    }
+    .padres-slide.on { opacity: 1; pointer-events: auto; }
   </style>
 </head>
 <body>
@@ -3360,6 +3436,11 @@
       <p class="dc-note fu">Formal · Para jardín y salón · No tenis</p>
 
       <p class="dc-avoid fu">Por favor evitar el blanco, el rojo y los tonos beige</p>
+      <div class="dc-avoid-swatches fu" role="list" aria-label="Colores a evitar">
+        <span class="dc-swatch" role="listitem" style="background:#FFFFFF" title="Blanco" aria-label="Blanco"></span>
+        <span class="dc-swatch" role="listitem" style="background:#ff0000" title="Rojo" aria-label="Rojo"></span>
+        <span class="dc-swatch" role="listitem" style="background:#e8dfc1" title="Beige" aria-label="Beige"></span>
+      </div>
 
       <button type="button" id="btn-inspiracion" class="btn-inspiracion fu" aria-label="Ver inspiración formal">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -3405,32 +3486,33 @@
         <div class="fam-heading">
           <span class="fam-script">Padres</span>
         </div>
-        <span class="fam-eyebrow fu">de Jess</span>
-        <div class="fam-members-v2">
-          <div class="fam-entry fu">
-            <span class="fam-role-v2">papá</span>
-            <span class="fam-name-v2">Gustavo Martínez</span>
-          </div>
-          <div class="fam-entry fu">
-            <span class="fam-role-v2">mamá</span>
-            <span class="fam-name-v2">Silvia Rodríguez</span>
-          </div>
-        </div>
-      </div>
 
-      <div class="fam-group-v2 fu">
-        <div class="fam-heading">
-          <span class="fam-script">Padres</span>
-        </div>
-        <span class="fam-eyebrow fu">de Jeszy</span>
-        <div class="fam-members-v2">
-          <div class="fam-entry fu">
-            <span class="fam-role-v2">papá</span>
-            <span class="fam-name-v2">Alfonso Ortega</span>
+        <div class="padres-stage" id="padresStage">
+          <div class="padres-slide on" data-i="0">
+            <span class="fam-eyebrow">de Jess</span>
+            <div class="fam-members-v2">
+              <div class="fam-entry">
+                <span class="fam-role-v2">pap&aacute;</span>
+                <span class="fam-name-v2">Gustavo Mart&iacute;nez</span>
+              </div>
+              <div class="fam-entry">
+                <span class="fam-role-v2">mam&aacute;</span>
+                <span class="fam-name-v2">Silvia Rodr&iacute;guez</span>
+              </div>
+            </div>
           </div>
-          <div class="fam-entry fu">
-            <span class="fam-role-v2">mamá</span>
-            <span class="fam-name-v2">Laura Avila</span>
+          <div class="padres-slide" data-i="1">
+            <span class="fam-eyebrow">de Jeszy</span>
+            <div class="fam-members-v2">
+              <div class="fam-entry">
+                <span class="fam-role-v2">pap&aacute;</span>
+                <span class="fam-name-v2">Alfonso Ortega</span>
+              </div>
+              <div class="fam-entry">
+                <span class="fam-role-v2">mam&aacute;</span>
+                <span class="fam-name-v2">Laura Avila</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -3496,10 +3578,14 @@
       </div>
       <div class="kids-card fu about-card">
         <div class="kids-icon">
-          <!-- Cruz / paloma de fe -->
+          <!-- Copas de brindis -->
           <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
-            <path d="M32 10 L32 50" stroke-linecap="round"/>
-            <path d="M22 22 L42 22" stroke-linecap="round"/>
+            <path d="M18 16 h11 l-2.2 10.5a3.4 3.4 0 0 1-6.6 0Z" stroke-linejoin="round"/>
+            <path d="M35 16 h11 l-2.2 10.5a3.4 3.4 0 0 1-6.6 0Z" stroke-linejoin="round"/>
+            <path d="M23.5 30 v13" stroke-linecap="round"/>
+            <path d="M40.5 30 v13" stroke-linecap="round"/>
+            <path d="M19 45 h9" stroke-linecap="round"/>
+            <path d="M36 45 h9" stroke-linecap="round"/>
             <circle cx="32" cy="32" r="22" opacity=".35" stroke-dasharray="2 4"/>
           </svg>
         </div>
@@ -3655,10 +3741,10 @@
       </div>
       <p class="album-text fu">Escanea el código QR para subir tus fotos al álbum del evento. Queremos vivir el día desde tus ojos también.</p>
       <div class="album-qr fu">
-        <p style="font-family:var(--serif);font-style:italic;font-size:18px;color:var(--accent);line-height:1.5;padding:52px 24px;margin:0;font-weight:500;">El código QR del álbum<br>estará disponible pronto</p>
+        <img src="qr-album.jpg" alt="Código QR del álbum compartido de Jess y Jeszy" width="240" height="240" />
       </div>
       <br>
-      <p class="album-link fu" style="opacity:.7">Próximamente</p>
+      <p class="album-link fu" style="opacity:.75;border:none;background:none;">Escanea el código el día del evento</p>
     </section>
 
     <!-- ── 9. COMPARTIR INVITACIÓN ───────────────── -->
@@ -3890,6 +3976,20 @@
       _fadeIn();
     }
   };
+
+  /* ── Padres — fade alternado entre las dos novias ── */
+  (function(){
+    var stage=document.getElementById('padresStage');
+    if(!stage)return;
+    var slides=stage.querySelectorAll('.padres-slide');
+    if(slides.length<2)return;
+    var i=0;
+    setInterval(function(){
+      slides[i].classList.remove('on');
+      i=(i+1)%slides.length;
+      slides[i].classList.add('on');
+    },4200);
+  })();
 
   /* ── Padrinos Carousel (swipe + auto-scroll) ── */
   (function(){
