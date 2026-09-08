@@ -2989,9 +2989,178 @@
       pointer-events: none;
     }
     .padres-slide.on { opacity: 1; pointer-events: auto; }
+
+    /* ══ LLUVIA DE SOBRES — sobre interactivo (de boda-jeffersson-y-vanessa) ══ */
+    .jv-env-rain{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+    .jv-env-rain-item{position:absolute;top:-46px;will-change:transform;opacity:0}
+    .jv-env-stage{position:relative;z-index:1;margin:46px auto 0;display:flex;flex-direction:column;align-items:center}
+    .jv-env-interactive{display:flex;flex-direction:column;align-items:center;cursor:pointer;-webkit-tap-highlight-color:transparent;outline:none;border:none;background:none;padding:0;margin:0 auto;opacity:0}
+    .jv-env-body{perspective:700px;position:relative;width:min(258px,74vw);aspect-ratio:260/200;filter:drop-shadow(0 10px 26px rgba(74,51,88,.22))}
+    .jv-env-body svg.jv-env-svg{width:100%;height:100%;display:block}
+    .jv-env-flap-wrap{position:absolute;top:23%;left:6.9%;width:86.2%;height:43%;transform-origin:top center;transform-style:preserve-3d;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:2}
+    .jv-env-interactive.open .jv-env-flap-wrap{transform:rotateX(-175deg)}
+    .jv-env-seal{position:absolute;top:52%;left:50%;width:23%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:3;transition:opacity .35s ease,transform .5s cubic-bezier(.4,0,.2,1);pointer-events:none}
+    .jv-env-interactive.open .jv-env-seal{opacity:0;transform:translate(-50%,-50%) scale(.7)}
+    .jv-env-open-content{overflow:hidden;max-height:0;opacity:0;transition:max-height .55s .3s ease,opacity .4s .38s ease;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 16px;text-align:center;pointer-events:none}
+    .jv-env-interactive.open .jv-env-open-content{max-height:340px;opacity:1;pointer-events:auto;margin-top:20px}
+    .jv-env-mailbox-icon{width:42px;height:42px;color:var(--accent);margin-top:6px}
+    .jv-env-title{font-family:var(--script);font-size:clamp(28px,8vw,34px);line-height:1.4;padding:.08em 0;color:var(--accent)}
+    .jv-env-desc{font-family:var(--serif);font-size:17px;font-weight:500;font-style:italic;color:var(--text);opacity:.88;line-height:1.75;max-width:300px}
+    .jv-env-tap-hint{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-top:18px;opacity:0;transition:opacity .5s ease;position:relative;z-index:1}
+    .jv-env-tap-hint.show{opacity:.85;animation:jvEnvHintPulse 2.4s ease-in-out infinite}
+    .jv-env-interactive.open~.jv-env-tap-hint{opacity:0!important;animation:none;pointer-events:none}
+    @keyframes jvEnvHintPulse{0%,100%{opacity:.5}50%{opacity:.95}}
+    .jv-env-body.landed{animation:jvEnvBreathe 3.6s ease-in-out infinite}
+    @keyframes jvEnvBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+    @media(prefers-reduced-motion:reduce){.jv-env-body.landed,.jv-env-tap-hint.show{animation:none!important}}
+
+    /* ══ MESA DE REGALOS — caja + carrusel (de boda-paola-e-ivan) ══ */
+    .pi-giftbox-stage{position:relative;margin:46px auto 0;max-width:560px;min-height:280px;display:flex;align-items:center;justify-content:center}
+    .pi-giftbox-stage > div{opacity:1}
+    .pi-giftbox{position:relative;width:190px;cursor:pointer;background:none;border:none;padding:0;transition:transform .45s cubic-bezier(.2,.7,.2,1);outline:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+    .pi-giftbox:hover{transform:translateY(-8px) scale(1.03)}
+    .pi-giftbox:focus{outline:none}
+    .pi-giftbox:focus-visible{outline:2px solid var(--accent);outline-offset:10px;border-radius:6px}
+    .pi-giftbox.is-open{pointer-events:none}
+    .pi-giftbox svg{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 34px rgba(74,51,88,.28))}
+    .pi-giftbox-lid{transform-origin:50% 100%;transition:transform .6s cubic-bezier(.34,1.4,.5,1),opacity .55s ease}
+    .pi-giftbox.is-open .pi-giftbox-lid{transform:translateY(-52px) rotate(-14deg);opacity:0}
+    .pi-giftbox-cta{display:block;margin-top:22px;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.36em;text-transform:uppercase;padding-left:.36em;color:var(--accent);animation:piGiftPulse 2.6s ease-in-out infinite;transition:opacity .4s}
+    @keyframes piGiftPulse{0%,100%{opacity:.6}50%{opacity:1}}
+    .pi-giftbox-cta.is-hidden{opacity:0;animation:none}
+    #pi-confetti-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+
+    .pi-gift-backdrop{position:fixed;top:0;right:0;bottom:0;left:0;height:100vh;height:100dvh;z-index:9500;background:rgba(58,48,40,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:0;pointer-events:none;transition:opacity .45s ease;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,40px);-webkit-transform:translateZ(0);transform:translateZ(0)}
+    .pi-gift-backdrop.is-open{opacity:1;pointer-events:auto}
+    body.pi-gift-locked{overflow:hidden;overscroll-behavior:none}
+    .pi-gift-reveal{position:relative;width:100%;max-width:520px;max-height:calc(100dvh - 32px);overflow-y:auto;-webkit-overflow-scrolling:touch;background:#fffef9;border:1px solid rgba(192,157,224,.55);border-radius:var(--r-lg);padding:clamp(34px,5vw,44px) 0 clamp(26px,4vw,32px);box-shadow:0 34px 90px rgba(58,48,40,.35);opacity:0;transform:translateY(26px) scale(.94);transition:opacity .5s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
+    .pi-gift-backdrop.is-open .pi-gift-reveal{opacity:1;transform:none}
+    .pi-gift-reveal-eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;padding-left:.34em;color:var(--accent);margin-bottom:4px;text-align:center}
+    .pi-gift-close{position:absolute;top:12px;right:12px;z-index:3;width:48px;height:48px;border-radius:50%;border:1px solid rgba(192,157,224,.55);background:#fffef9;color:var(--accent);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .3s,color .3s,transform .3s;padding:0;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+    .pi-gift-close:hover{background:var(--accent);color:#fffef9;transform:rotate(90deg)}
+    .pi-gift-close:focus{outline:none}
+    .pi-gift-close:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .pi-gift-close svg{width:17px;height:17px}
+    .pi-gr-viewport{position:relative;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain;cursor:grab;outline:none;-webkit-tap-highlight-color:transparent}
+    .pi-gr-viewport::-webkit-scrollbar{display:none}
+    .pi-gr-viewport:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+    .pi-gr-track{display:flex;align-items:stretch;min-width:100%}
+    .pi-gr-slide{flex:0 0 100%;width:100%;min-width:100%;scroll-snap-align:center;scroll-snap-stop:always;padding:20px clamp(22px,5vw,38px) 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    .pi-gr-slide img{-webkit-user-drag:none;user-drag:none;pointer-events:none}
+    .pi-gr-logo{height:52px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+    .pi-gr-logo img{max-height:46px;max-width:200px;width:auto;height:auto;display:block}
+    .pi-gr-logo svg{height:38px;width:auto}
+    .pi-gr-title{font-family:var(--display);font-style:italic;font-size:26px;color:var(--gold-dark);margin-bottom:8px}
+    .pi-gr-desc{font-family:var(--serif);font-size:17px;font-weight:500;line-height:1.6;color:var(--text);margin-bottom:22px}
+    .pi-gr-bankname{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);padding-left:.3em;margin-bottom:14px}
+    .pi-gr-accounts{display:flex;flex-direction:column;gap:12px;width:100%;max-width:380px;margin:0 auto}
+    .pi-gr-acc{display:flex;align-items:center;gap:14px;text-align:left;padding:14px 16px;border:1px solid rgba(192,157,224,.45);background:var(--surface);border-radius:var(--r-sm)}
+    .pi-gr-acc-info{flex:1;min-width:0}
+    .pi-gr-acc-n{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);padding-left:.14em;margin-bottom:4px}
+    .pi-gr-acc-c{font-family:var(--sans);font-size:16px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .pi-gr-acc-btn{flex-shrink:0;width:48px;height:48px;border-radius:50%;border:1px solid rgba(192,157,224,.6);background:transparent;color:var(--accent);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .3s,color .3s,transform .3s;padding:0;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+    .pi-gr-acc-btn:hover{background:var(--accent);color:#fffef9;transform:scale(1.08)}
+    .pi-gr-acc-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .pi-gr-acc-btn svg{width:16px;height:16px}
+    .pi-gr-acc-btn.is-copied{background:var(--salvia);color:#fffef9;border-color:var(--salvia)}
+    .pi-gr-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:14px 30px;padding-left:calc(30px + .28em);border:1px solid var(--accent);border-radius:100px;background:transparent;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);text-decoration:none;cursor:pointer;transition:background .35s ease,color .35s ease;touch-action:manipulation}
+    .pi-gr-btn:hover{background:var(--accent);color:#fffef9}
+    .pi-gr-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .pi-gr-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:24px}
+    .pi-gr-arrow{width:48px;height:48px;border-radius:50%;border:1px solid rgba(192,157,224,.6);background:transparent;color:var(--accent);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .3s,color .3s,transform .3s;padding:0;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+    .pi-gr-arrow:hover{background:var(--accent);color:#fffef9;transform:scale(1.08)}
+    .pi-gr-arrow:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .pi-gr-arrow svg{width:16px;height:16px}
+    .pi-gr-arrow:disabled{cursor:default;opacity:.32}
+    .pi-gr-arrow:disabled:hover{background:transparent;color:var(--accent);transform:none}
+    .pi-gr-dots{display:flex;gap:10px}
+    .pi-gr-dot{width:10px;height:10px;border-radius:50%;border:1px solid rgba(192,157,224,.7);background:transparent;padding:0;cursor:pointer;transition:background .3s,transform .3s;-webkit-appearance:none;appearance:none}
+    .pi-gr-dot.is-active{background:var(--gold);transform:scale(1.35)}
+    .pi-gr-dot:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .pi-gr-hint{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(58,48,40,.6);margin-top:14px;padding-left:.2em;text-align:center}
+    @media(max-width:520px){.pi-giftbox{width:158px}.pi-gr-title{font-size:23px}.pi-gr-nav{gap:14px}}
+
+    /* ══ MENÚ DE NAVEGACIÓN (de boda-alexis-y-edgar) ══ */
+    .nav-btn{position:fixed;top:16px;right:16px;z-index:9200;width:54px;height:54px;border-radius:50%;border:1px solid rgba(192,157,224,.6);background:rgba(74,51,88,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;box-shadow:0 8px 26px -8px rgba(58,48,40,.55);opacity:0;pointer-events:none;transition:opacity .5s ease,transform .3s ease,background .3s ease}
+    .nav-btn.is-ready{opacity:1;pointer-events:auto}
+    .nav-btn:hover{transform:scale(1.06);background:rgba(123,87,163,.9)}
+    .nav-btn i{display:block;width:22px;height:1.6px;background:#fffef9;border-radius:2px;transition:transform .35s ease,opacity .25s ease}
+    .nav-btn.abierto i:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
+    .nav-btn.abierto i:nth-child(2){opacity:0}
+    .nav-btn.abierto i:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
+    #nav-panel{position:fixed;inset:0;z-index:9150;background:linear-gradient(160deg,rgba(74,51,88,.975) 0%,rgba(123,87,163,.975) 100%);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .42s ease}
+    #nav-panel.abierto{opacity:1;pointer-events:auto}
+    .nav-inner{width:100%;max-width:460px;padding:24px;max-height:92vh;overflow-y:auto;text-align:center}
+    .nav-mono{display:block;margin:0 auto 14px;font-family:var(--script);font-size:clamp(46px,13vw,58px);line-height:1;color:var(--gold-light);opacity:0;transform:translateY(-10px);transition:opacity .5s .1s ease,transform .5s .1s ease}
+    #nav-panel.abierto .nav-mono{opacity:.95;transform:none}
+    .nav-lista{list-style:none;margin:0;padding:0}
+    .nav-lista li{margin:0;opacity:0;transform:translateY(14px);transition:opacity .42s ease,transform .42s cubic-bezier(.2,.8,.2,1)}
+    #nav-panel.abierto .nav-lista li{opacity:1;transform:none}
+    .nav-lista a{position:relative;display:block;padding:14px 10px;min-height:48px;text-decoration:none;font-family:var(--display);font-size:clamp(20px,4.4vw,26px);font-weight:600;color:#fffef9;line-height:1.25;transition:color .3s ease,letter-spacing .3s ease}
+    .nav-lista a::after{content:'';position:absolute;left:50%;bottom:6px;transform:translateX(-50%) scaleX(0);width:46px;height:1px;background:var(--gold-light);transition:transform .35s ease;transform-origin:center}
+    .nav-lista a:hover,.nav-lista a:focus-visible{color:var(--gold-light);letter-spacing:.03em}
+    .nav-lista a:hover::after,.nav-lista a:focus-visible::after{transform:translateX(-50%) scaleX(1)}
+    .nav-lista li + li{border-top:1px solid rgba(255,254,249,.16)}
+    .nav-lista a.is-active{color:var(--gold)}
+    .nav-lista a.is-active::after{transform:translateX(-50%) scaleX(1);opacity:.7}
+    .nav-rsvp{color:var(--sol)!important;font-weight:700}
+    .nav-rsvp::after{transform:translateX(-50%) scaleX(1)!important;width:58px;opacity:.85;background:var(--sol)}
+    @media (prefers-reduced-motion:reduce){.nav-btn,#nav-panel,.nav-lista li,.nav-mono{transition:none}}
+
+    /* ── Dress code: figuras de referencia ── */
+    .dc-figuras {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 10px;
+      margin: 30px auto 26px;
+      max-width: 360px;
+    }
+    .dc-fig { flex: 1; text-align: center; margin: 0; }
+    .dc-fig img {
+      width: 100%;
+      height: auto;
+      max-height: 260px;
+      object-fit: contain;
+      object-position: bottom;
+      margin: 0 auto;
+      filter: drop-shadow(0 10px 18px rgba(43,31,61,.13));
+    }
+    .dc-fig figcaption {
+      margin-top: 10px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
   </style>
 </head>
 <body>
+
+  <!-- MENÚ DE NAVEGACIÓN -->
+  <button class="nav-btn" id="navBtn" type="button" aria-label="Abrir el menú" aria-expanded="false" aria-controls="nav-panel">
+    <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
+  </button>
+  <nav id="nav-panel" aria-label="Secciones de la invitación">
+    <div class="nav-inner">
+      <span class="nav-mono" aria-hidden="true">J&amp;J</span>
+      <ul class="nav-lista">
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#cuenta">Cuenta regresiva</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+        <li><a href="#itinerario">Itinerario</a></li>
+        <li><a href="#dresscode">Vestimenta</a></li>
+        <li><a href="#familia">Familia</a></li>
+        <li><a href="#kids-policy">Solo adultos</a></li>
+        <li><a href="#gifts">Regalos</a></li>
+        <li><a href="#galeria-wheel">Galería</a></li>
+        <li><a href="#album">Álbum</a></li>
+        <li><a href="#rsvp" class="nav-rsvp">Confirmar</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <!-- ════════════════════════════════════
        BG LAYER — fondos difuminados con crossfade
@@ -3435,6 +3604,17 @@
       </div>
       <p class="dc-note fu">Formal · Para jardín y salón · No tenis</p>
 
+      <div class="dc-figuras fu">
+        <figure class="dc-fig">
+          <img src="caballero.png" alt="Ejemplo de vestimenta formal para caballero" loading="lazy" />
+          <figcaption>Caballeros</figcaption>
+        </figure>
+        <figure class="dc-fig">
+          <img src="dama.png" alt="Ejemplo de vestimenta formal para dama" loading="lazy" />
+          <figcaption>Damas</figcaption>
+        </figure>
+      </div>
+
       <p class="dc-avoid fu">Por favor evitar el blanco, el rojo y los tonos beige</p>
       <div class="dc-avoid-swatches fu" role="list" aria-label="Colores a evitar">
         <span class="dc-swatch" role="listitem" style="background:#FFFFFF" title="Blanco" aria-label="Blanco"></span>
@@ -3615,68 +3795,127 @@
       <h2 class="title fu">Lluvia <span style="font-family:var(--script);color:var(--accent);font-size:42px;">de</span> sobres</h2>
       <p class="gifts-sub fu" style="font-family:var(--serif);font-size:18px;color:rgba(58,48,40,.7);line-height:1.7;margin-top:14px;font-style:italic">Tu presencia es nuestro mejor regalo</p>
 
-      <div style="margin:52px auto 0;display:flex;flex-direction:column;align-items:center;gap:0;">
-        <button class="env-interactive fu" aria-label="Sobre — toca para abrir" aria-expanded="false">
-          <div class="env-body">
-            <svg class="env-svg" viewBox="0 0 260 200" preserveAspectRatio="none" aria-hidden="true">
+      <div class="jv-env-rain" id="jvEnvRain" aria-hidden="true"></div>
+      <div class="jv-env-stage">
+        <button class="jv-env-interactive" id="jvEnvGift" type="button" aria-label="Sobre — toca para abrir" aria-expanded="false">
+          <div class="jv-env-body" id="jvEnvGiftBody">
+            <svg class="jv-env-svg" viewBox="0 0 260 200" preserveAspectRatio="none" aria-hidden="true">
               <defs>
-                <linearGradient id="vp-env-fill" x1="0" y1="1" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#eba0bf"/>
-                  <stop offset="100%" stop-color="#fffef9"/>
+                <linearGradient id="jvEnvPaper" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#fffef9"/><stop offset="100%" stop-color="#f7effa"/>
                 </linearGradient>
               </defs>
-              <rect x="18" y="52" width="224" height="132" rx="10"
-                    fill="url(#vp-env-fill)" stroke="rgba(235,160,191,.7)" stroke-width="1.4"/>
-              <path d="M18 184 L130 110 L242 184" stroke="rgba(235,160,191,.5)" stroke-width="1" fill="none"/>
-              <line x1="90"  y1="30" x2="90"  y2="20" stroke="#eba0bf" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>
-              <line x1="130" y1="24" x2="130" y2="14" stroke="#eba0bf" stroke-width="1.3" stroke-linecap="round" opacity=".7"/>
-              <line x1="170" y1="30" x2="170" y2="20" stroke="#eba0bf" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>
-              <line x1="110" y1="18" x2="110" y2="10" stroke="#97c9e8" stroke-width="1"   stroke-linecap="round" opacity=".4"/>
-              <line x1="150" y1="18" x2="150" y2="10" stroke="#97c9e8" stroke-width="1"   stroke-linecap="round" opacity=".4"/>
-              <circle cx="130" cy="118" r="16" fill="rgba(235,160,191,.18)" stroke="rgba(235,160,191,.55)" stroke-width="1"/>
-              <text x="130" y="123" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#3A3028" opacity=".8">J&amp;J</text>
+              <rect x="18" y="52" width="224" height="132" rx="8" fill="url(#jvEnvPaper)" stroke="rgba(123,87,163,.45)" stroke-width="1.4"/>
+              <path d="M18 184 L130 110 L242 184" stroke="rgba(123,87,163,.28)" stroke-width="1" fill="none"/>
             </svg>
-            <div class="env-flap-wrap" aria-hidden="true">
-              <svg viewBox="0 0 224 86" preserveAspectRatio="none" style="width:100%;height:100%">
+            <div class="jv-env-flap-wrap" aria-hidden="true">
+              <svg viewBox="0 0 224 86" preserveAspectRatio="none" style="width:100%;height:100%;display:block">
                 <defs>
-                  <linearGradient id="vp-flap-fill" x1="0" y1="1" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#97c9e8"/>
-                    <stop offset="100%" stop-color="#eba0bf"/>
+                  <linearGradient id="jvEnvFlap" x1="0" y1="1" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#f7effa"/><stop offset="100%" stop-color="#fffef9"/>
                   </linearGradient>
                 </defs>
-                <path d="M0 0 L112 86 L224 0 Z"
-                      fill="url(#vp-flap-fill)" stroke="rgba(235,160,191,.7)" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M0 0 L112 86 L224 0 Z" fill="url(#jvEnvFlap)" stroke="rgba(123,87,163,.45)" stroke-width="1.5" stroke-linejoin="round"/>
               </svg>
             </div>
+            <svg class="jv-env-seal" viewBox="0 0 60 60" aria-hidden="true">
+              <circle cx="30" cy="30" r="28" fill="#7B57A3"/>
+              <circle cx="30" cy="30" r="28" fill="none" stroke="#4A3358" stroke-width="2" opacity=".55"/>
+              <circle cx="30" cy="30" r="21.5" fill="none" stroke="#eba0bf" stroke-width="1.1" opacity=".9"/>
+              <text x="30" y="38" text-anchor="middle" font-family="'Great Vibes', cursive" font-size="24" fill="#fffef9">J&amp;J</text>
+            </svg>
           </div>
-          <div class="env-open-content" aria-live="polite">
-            <svg class="env-mailbox-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <div class="jv-env-open-content" aria-live="polite">
+            <svg class="jv-env-mailbox-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <rect x="8" y="22" width="36" height="24" rx="5"/>
               <path d="M8 30 Q26 38 44 30"/>
               <rect x="18" y="8" width="16" height="16" rx="2"/>
               <path d="M18 8 Q26 3 34 8"/>
               <rect x="20" y="28" width="12" height="2.5" rx="1.25" fill="currentColor" stroke="none" opacity=".4"/>
             </svg>
-            <p class="env-title">Lluvia de sobres</p>
-            <p class="env-desc">Si deseas obsequiarnos en efectivo:<br><strong style="display:block;margin-top:10px;font-family:var(--sans);font-size:13px;letter-spacing:.5px;font-weight:700;color:var(--text)">CLABE 638180000142054455</strong><span style="display:block;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--text)">Cuenta Nu · Jessica Ortega</span></p>
+            <p class="jv-env-title">Tu presencia es nuestro regalo</p>
+            <p class="jv-env-desc">El día del evento habrá una urna donde podrás depositar tu sobre con mucho cariño.</p>
           </div>
         </button>
-        <p class="env-tap-hint fu">Toca el sobre</p>
+        <p class="jv-env-tap-hint" id="jvEnvGiftHint">Toca para abrir</p>
       </div>
 
-      <div style="margin:40px auto 0;text-align:center;max-width:360px;">
-        <p style="font-family:var(--serif);font-style:italic;font-size:16px;font-weight:500;color:rgba(58,48,40,.75);line-height:1.7;margin-bottom:18px;">
-          También puedes consultar nuestra mesa de regalos en Amazon.
-        </p>
-        <a href="https://www.amazon.com.mx/wedding/guest-view/3KDMX9ZO2J0UQ" target="_blank" rel="noopener noreferrer"
-           class="gift-btn-heart fu" style="display:inline-flex;align-items:center;gap:8px;">
-          <svg width="16" height="16" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-            <rect x="8" y="22" width="36" height="22" rx="2" stroke-linejoin="round"/>
-            <rect x="6" y="16" width="40" height="8" rx="2" stroke-linejoin="round"/>
-            <path d="M26 16 L26 44" stroke-linecap="round"/>
-          </svg>
-          Ver lista en Amazon
-        </a>
+      <!-- MESA DE REGALOS — caja que se abre -->
+      <div class="pi-giftbox-stage">
+        <canvas id="pi-confetti-canvas" aria-hidden="true"></canvas>
+        <div>
+          <button class="pi-giftbox" id="pi-giftbox" type="button" aria-label="Abrir la mesa de regalos" aria-expanded="false" aria-controls="pi-gift-reveal">
+            <svg viewBox="0 0 200 190" fill="none" aria-hidden="true">
+              <rect x="26" y="72" width="148" height="104" rx="4" fill="#4A3358"/>
+              <rect x="26" y="72" width="148" height="104" rx="4" fill="url(#piGbShade)"/>
+              <rect x="88" y="72" width="24" height="104" fill="#c09de0"/>
+              <rect x="26" y="112" width="148" height="15" fill="#c09de0"/>
+              <rect x="26.7" y="72.7" width="146.6" height="102.6" rx="3.3" stroke="#7B57A3" stroke-width="1.4"/>
+              <g class="pi-giftbox-lid">
+                <rect x="16" y="54" width="168" height="26" rx="4" fill="#5C4272"/>
+                <rect x="16.7" y="54.7" width="166.6" height="24.6" rx="3.3" stroke="#7B57A3" stroke-width="1.4"/>
+                <rect x="88" y="54" width="24" height="26" fill="#c09de0"/>
+                <path d="M100 54 C100 40 84 26 70 32 C58 37 62 52 78 54 Z" fill="#eba0bf" stroke="#7B57A3" stroke-width="1.2"/>
+                <path d="M100 54 C100 40 116 26 130 32 C142 37 138 52 122 54 Z" fill="#eba0bf" stroke="#7B57A3" stroke-width="1.2"/>
+                <circle cx="100" cy="52" r="8" fill="#faf79d" stroke="#7B57A3" stroke-width="1.2"/>
+              </g>
+              <defs>
+                <linearGradient id="piGbShade" x1="26" y1="72" x2="174" y2="176" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#ffffff" stop-opacity=".14"/><stop offset="1" stop-color="#000000" stop-opacity=".2"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </button>
+          <span class="pi-giftbox-cta" id="pi-giftbox-cta">Toca el regalo</span>
+        </div>
+      </div>
+
+      <div class="pi-gift-backdrop" id="pi-gift-backdrop" role="dialog" aria-modal="true" aria-label="Mesa de regalos">
+        <div class="pi-gift-reveal" id="pi-gift-reveal">
+          <button class="pi-gift-close" id="pi-gift-close" type="button" aria-label="Cerrar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+          <div class="pi-gift-reveal-eyebrow">Elige una opción</div>
+          <div class="pi-gr-viewport" id="pi-gr-viewport">
+            <div class="pi-gr-track" id="pi-gr-track">
+
+              <div class="pi-gr-slide">
+                <div class="pi-gr-logo"><img src="amazon-logo.png" alt="Amazon" width="400" height="121" decoding="async"></div>
+                <div class="pi-gr-title">Mesa de regalos</div>
+                <div class="pi-gr-desc">Nuestra lista de bodas en línea<br>Envío directo a las novias</div>
+                <a class="pi-gr-btn" href="https://www.amazon.com.mx/wedding/guest-view/3KDMX9ZO2J0UQ" target="_blank" rel="noopener noreferrer">Ver mesa de regalos</a>
+              </div>
+
+              <div class="pi-gr-slide">
+                <div class="pi-gr-logo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#7B57A3" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
+                    <rect x="3" y="6" width="18" height="13" rx="1.5"/><path d="M3 10h18"/><path d="M7 15h4"/>
+                  </svg>
+                </div>
+                <div class="pi-gr-title">Transferencia</div>
+                <div class="pi-gr-bankname">Cuenta Nu</div>
+                <div class="pi-gr-accounts">
+                  <div class="pi-gr-acc">
+                    <div class="pi-gr-acc-info">
+                      <div class="pi-gr-acc-n">Jessica Ortega</div>
+                      <div class="pi-gr-acc-c">638 180 000142054455</div>
+                    </div>
+                    <button class="pi-gr-acc-btn pi-copy-clabe" data-clabe="638180000142054455" type="button" aria-label="Copiar CLABE de Jessica Ortega">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="pi-gr-nav">
+            <button class="pi-gr-arrow" id="pi-gr-prev" type="button" aria-label="Opción anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+            <div class="pi-gr-dots" id="pi-gr-dots"></div>
+            <button class="pi-gr-arrow" id="pi-gr-next" type="button" aria-label="Siguiente opción"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+          </div>
+          <div class="pi-gr-hint">Desliza para cambiar de opción</div>
+        </div>
       </div>
     </section>
 
@@ -4108,6 +4347,7 @@
       if (typeof window.startMusicAutoplay === 'function') window.startMusicAutoplay();
       heroAnim();
       spawnPetals();
+      try { initMenu(); } catch(e){}
       setupPetalsVisibility();
       setupBgCrossfade();
       scrollAnims();
@@ -5012,6 +5252,414 @@
       setTimeout(function () { btn.textContent = orig; }, 2200);
     });
   });
+
+  /* ── LLUVIA DE SOBRES — cae hasta que la sección se centra, ahí aterriza uno ── */
+  (function(){
+    var sec=document.getElementById('gifts'),rain=document.getElementById('jvEnvRain'),
+        btn=document.getElementById('jvEnvGift'),body=document.getElementById('jvEnvGiftBody'),
+        hint=document.getElementById('jvEnvGiftHint');
+    if(!sec||!rain||!btn)return;
+    var raining=true,landed=false,spawnCall=null,alive=0;
+    var MAX_ALIVE=18;
+
+    function makeEnvelope(){
+      if(alive>=MAX_ALIVE)return;
+      alive++;
+      var el=document.createElementNS('http://www.w3.org/2000/svg','svg');
+      el.setAttribute('viewBox','0 0 34 24');
+      el.setAttribute('class','jv-env-rain-item');
+      var w=16+Math.random()*16;
+      el.style.width=w+'px';el.style.height=(w*24/34)+'px';
+      el.style.left=(Math.random()*100)+'%';
+      el.innerHTML='<rect x="1" y="1" width="32" height="22" rx="2.5" fill="#fffef9" stroke="#7B57A3" stroke-width="1.2"/>'+
+                   '<path d="M1 1 L17 13 L33 1" fill="none" stroke="#7B57A3" stroke-width="1.2" stroke-linejoin="round"/>';
+      rain.appendChild(el);
+      var H=sec.offsetHeight+80,dur=5+Math.random()*4;
+      function kill(){if(el.parentNode){el.remove();alive--;}}
+      gsap.timeline({onComplete:kill})
+        .fromTo(el,{y:-46,x:0,rotation:(Math.random()-.5)*50,opacity:0},
+                   {y:H,x:(Math.random()-.5)*70,rotation:(Math.random()-.5)*160,
+                    duration:dur,ease:'none'},0)
+        .fromTo(el,{opacity:0},{opacity:.75,duration:dur*.18,ease:'power1.out'},0)
+        .to(el,{opacity:0,duration:dur*.25,ease:'power1.in'},dur*.75);
+    }
+
+    function scheduleSpawn(){
+      spawnCall=gsap.delayedCall(.52,function(){
+        if(!raining)return;
+        makeEnvelope();
+        scheduleSpawn();
+      });
+    }
+    function startRain(){
+      for(var i=0;i<7;i++)gsap.delayedCall(i*.26,makeEnvelope);
+      scheduleSpawn();
+    }
+    function stopRain(){
+      raining=false;
+      if(spawnCall)spawnCall.kill();
+      gsap.to(rain,{opacity:0,duration:1.1,ease:'power2.out',
+        onComplete:function(){rain.innerHTML='';alive=0;}});
+    }
+
+    function land(){
+      if(landed)return;landed=true;
+      stopRain();
+      gsap.fromTo(btn,
+        {opacity:0,y:-150,rotation:-12,scale:.82},
+        {opacity:1,y:0,rotation:0,scale:1,duration:1.15,ease:'back.out(1.5)',
+         onComplete:function(){
+           if(body)body.classList.add('landed');
+           if(hint)hint.classList.add('show');
+         }});
+    }
+
+    startRain();
+    /* 'center 55%' a propósito: el reveal desplaza las secciones aún no visibles
+       y con 'center center' exacto el umbral queda fuera de alcance. */
+    ScrollTrigger.create({trigger:sec,start:'center 55%',once:true,onEnter:land,onEnterBack:land});
+
+    function toggle(e){
+      if(e)e.preventDefault();
+      if(!landed)land();
+      var open=btn.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      if(open&&body)body.classList.remove('landed');
+      ScrollTrigger.refresh();
+    }
+    btn.addEventListener('click',toggle);
+  })();
+
+  /* ── MESA DE REGALOS: caja + confetti + carrusel ── */
+  (function(){
+    var box    = document.getElementById('pi-giftbox');
+    var cta    = document.getElementById('pi-giftbox-cta');
+    var reveal = document.getElementById('pi-gift-backdrop');
+    var closeB = document.getElementById('pi-gift-close');
+    var track  = document.getElementById('pi-gr-track');
+    var viewp  = document.getElementById('pi-gr-viewport');
+    var dotsEl = document.getElementById('pi-gr-dots');
+    var canvas = document.getElementById('pi-confetti-canvas');
+    if(!box || !reveal || !track) return;
+
+    var slides = track.querySelectorAll('.pi-gr-slide');
+    var total  = slides.length;
+    var idx    = 0;
+
+    for(var i=0;i<total;i++){
+      (function(n){
+        var d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'pi-gr-dot' + (n===0?' is-active':'');
+        d.setAttribute('aria-label','Opci\u00f3n ' + (n+1) + ' de ' + total);
+        d.addEventListener('click', function(){ goTo(n); });
+        dotsEl.appendChild(d);
+      })(i);
+    }
+    var dots    = dotsEl.querySelectorAll('.pi-gr-dot');
+    var prevBtn = document.getElementById('pi-gr-prev');
+    var nextBtn = document.getElementById('pi-gr-next');
+
+    function layoutSlides(){
+      var h = 0;
+      for(var a=0;a<slides.length;a++){
+        slides[a].style.height = 'auto';
+        h = Math.max(h, slides[a].scrollHeight);
+      }
+      for(var b=0;b<slides.length;b++) slides[b].style.height = h + 'px';
+      goTo(idx, 'auto');
+    }
+    window.addEventListener('resize', function(){ if(reveal.classList.contains('is-open')) layoutSlides(); });
+
+    function syncUI(){
+      for(var k=0;k<dots.length;k++) dots[k].classList.toggle('is-active', k===idx);
+      for(var m=0;m<slides.length;m++){
+        slides[m].setAttribute('aria-hidden', m===idx ? 'false' : 'true');
+        var f = slides[m].querySelectorAll('a,button');
+        for(var q=0;q<f.length;q++){
+          if(m===idx) f[q].removeAttribute('tabindex'); else f[q].setAttribute('tabindex','-1');
+        }
+      }
+      prevBtn.disabled = (idx === 0);
+      nextBtn.disabled = (idx === total-1);
+    }
+
+    function goTo(n, behavior){
+      idx = Math.max(0, Math.min(total-1, n));
+      var target = idx * viewp.clientWidth;
+      try{ viewp.scrollTo({ left: target, behavior: behavior || 'smooth' }); }
+      catch(e){ viewp.scrollLeft = target; }
+      setTimeout(function(){
+        if(Math.abs(viewp.scrollLeft - target) > 4) viewp.scrollLeft = target;
+      }, 420);
+      syncUI();
+    }
+
+    prevBtn.addEventListener('click', function(){ goTo(idx-1); });
+    nextBtn.addEventListener('click', function(){ goTo(idx+1); });
+
+    function syncFromScroll(){
+      var n = Math.round(viewp.scrollLeft / Math.max(1, viewp.clientWidth));
+      n = Math.max(0, Math.min(total-1, n));
+      if(n !== idx){ idx = n; syncUI(); }
+    }
+    var scrollTick = null;
+    viewp.addEventListener('scroll', function(){
+      if(scrollTick) clearTimeout(scrollTick);
+      scrollTick = setTimeout(syncFromScroll, 90);
+    }, {passive:true});
+    viewp.addEventListener('scrollend', syncFromScroll);
+    viewp.addEventListener('touchend', function(){
+      setTimeout(syncFromScroll, 160);
+      setTimeout(syncFromScroll, 520);
+    }, {passive:true});
+
+    var mDown = false, mStartX = 0, mStartScroll = 0, moved = 0;
+    viewp.addEventListener('mousedown', function(e){
+      if(e.target.closest('a,button')) return;
+      mDown = true; moved = 0;
+      mStartX = e.clientX; mStartScroll = viewp.scrollLeft;
+      viewp.style.cursor = 'grabbing';
+    });
+    window.addEventListener('mousemove', function(e){
+      if(!mDown) return;
+      var d = e.clientX - mStartX;
+      moved = Math.abs(d);
+      if(moved > 3) e.preventDefault();
+      viewp.scrollLeft = mStartScroll - d;
+    });
+    window.addEventListener('mouseup', function(){
+      if(!mDown) return;
+      mDown = false; viewp.style.cursor = '';
+      goTo(Math.round(viewp.scrollLeft / Math.max(1, viewp.clientWidth)));
+    });
+    viewp.addEventListener('click', function(e){
+      if(moved > 8){ e.preventDefault(); e.stopPropagation(); moved = 0; }
+    }, true);
+
+    viewp.setAttribute('tabindex','0');
+    viewp.setAttribute('role','group');
+    viewp.setAttribute('aria-label','Opciones de mesa de regalos');
+    viewp.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowLeft'){  e.preventDefault(); goTo(idx-1); }
+      if(e.key === 'ArrowRight'){ e.preventDefault(); goTo(idx+1); }
+    });
+
+    function burst(){
+      if(!canvas || !canvas.getContext) return;
+      var ctx = canvas.getContext('2d');
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var stage = canvas.parentElement;
+      var W = stage.offsetWidth, H = stage.offsetHeight;
+      if(!W || !H) return;
+      canvas.width = W*dpr; canvas.height = H*dpr;
+      ctx.scale(dpr,dpr);
+
+      var colors = ['#c09de0','#eba0bf','#7B57A3','#7accaf','#faf79d','#eba275','#fffef9'];
+      var parts = [];
+      var cx = W/2, cy = H/2;
+      var n = window.innerWidth < 520 ? 70 : 120;
+      for(var i=0;i<n;i++){
+        var a = (Math.PI * 2 * i / n) + (i % 7) * 0.11;
+        var sp = 3.4 + (i % 11) * 0.62;
+        parts.push({
+          x:cx, y:cy,
+          vx: Math.cos(a) * sp * (0.6 + (i%5)*0.14),
+          vy: Math.sin(a) * sp * (0.6 + (i%3)*0.2) - 3.6,
+          w: 5 + (i%4)*2.4,
+          h: 3 + (i%3)*2,
+          rot: (i%360) * 0.0175,
+          vr: ((i%2?1:-1)) * (0.06 + (i%5)*0.02),
+          c: colors[i % colors.length],
+          life: 1
+        });
+      }
+      var t0 = null;
+      function frame(ts){
+        if(t0 === null) t0 = ts;
+        var el = (ts - t0) / 1000;
+        ctx.clearRect(0,0,W,H);
+        var alive = false;
+        for(var i=0;i<parts.length;i++){
+          var p = parts[i];
+          p.vy += 0.14;
+          p.vx *= 0.992;
+          p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+          p.life = Math.max(0, 1 - el/2.6);
+          if(p.life > 0 && p.y < H + 40){
+            alive = true;
+            ctx.save();
+            ctx.globalAlpha = p.life;
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            ctx.fillStyle = p.c;
+            ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+            ctx.restore();
+          }
+        }
+        if(alive) requestAnimationFrame(frame);
+        else ctx.clearRect(0,0,W,H);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    var isOpen = false;
+    if(reveal.parentElement !== document.body) document.body.appendChild(reveal);
+
+    var savedScrollY = 0;
+    function lockScroll(){
+      savedScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      document.body.style.position = 'fixed';
+      document.body.style.top      = (-savedScrollY) + 'px';
+      document.body.style.left     = '0';
+      document.body.style.right    = '0';
+      document.body.style.width    = '100%';
+      document.body.classList.add('pi-gift-locked');
+    }
+    function unlockScroll(){
+      document.body.classList.remove('pi-gift-locked');
+      document.body.style.position = '';
+      document.body.style.top      = '';
+      document.body.style.left     = '';
+      document.body.style.right    = '';
+      document.body.style.width    = '';
+      window.scrollTo(0, savedScrollY);
+    }
+
+    function openGift(){
+      if(isOpen) return;
+      isOpen = true;
+      box.classList.add('is-open');
+      box.setAttribute('aria-expanded','true');
+      if(cta) cta.classList.add('is-hidden');
+      burst();
+      setTimeout(function(){
+        reveal.classList.add('is-open');
+        lockScroll();
+        requestAnimationFrame(function(){
+          layoutSlides();
+          goTo(0, 'auto');
+          if(viaTeclado && closeB) closeB.focus();
+        });
+      }, 240);
+    }
+
+    function closeGift(){
+      if(!isOpen) return;
+      isOpen = false;
+      reveal.classList.remove('is-open');
+      unlockScroll();
+      setTimeout(function(){
+        box.classList.remove('is-open');
+        box.setAttribute('aria-expanded','false');
+        if(cta) cta.classList.remove('is-hidden');
+        goTo(0, 'auto');
+      }, 420);
+      if(viaTeclado) box.focus();
+      viaTeclado = false;
+    }
+
+    var viaTeclado = false;
+    box.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' ') viaTeclado = true;
+    });
+    box.addEventListener('mousedown',  function(){ viaTeclado = false; });
+    box.addEventListener('touchstart', function(){ viaTeclado = false; }, {passive:true});
+    box.addEventListener('click', openGift);
+    if(closeB) closeB.addEventListener('click', closeGift);
+    reveal.addEventListener('click', function(e){ if(e.target === reveal) closeGift(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && isOpen) closeGift(); });
+
+    /* Copiado de CLABE de este componente */
+    document.querySelectorAll('.pi-copy-clabe').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var clabe = btn.dataset.clabe || '';
+        function done(){
+          var ico = btn.innerHTML;
+          btn.classList.add('is-copied');
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+          setTimeout(function(){ btn.innerHTML = ico; btn.classList.remove('is-copied'); }, 2200);
+        }
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(clabe).then(done).catch(done);
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = clabe; document.body.appendChild(ta); ta.select();
+          try{ document.execCommand('copy'); }catch(e){}
+          ta.remove(); done();
+        }
+      });
+    });
+  })();
+
+  /* ── MENÚ DE NAVEGACIÓN ── */
+  function initMenu(){
+    var btn = document.getElementById('navBtn');
+    var panel = document.getElementById('nav-panel');
+    if(!btn || !panel) return;
+    if(btn.dataset.ready === '1') return;
+    btn.dataset.ready = '1';
+    var enlaces = panel.querySelectorAll('a[href^="#"]');
+
+    function abrir(v){
+      panel.classList.toggle('abierto', v);
+      btn.classList.toggle('abierto', v);
+      btn.setAttribute('aria-expanded', v ? 'true' : 'false');
+      btn.setAttribute('aria-label', v ? 'Cerrar el men\u00fa' : 'Abrir el men\u00fa');
+      document.body.style.overflow = v ? 'hidden' : '';
+      if(v){
+        panel.querySelectorAll('.nav-lista li').forEach(function(li,k){
+          li.style.transitionDelay = (0.06 + k*0.032) + 's';
+        });
+      }else{
+        panel.querySelectorAll('.nav-lista li').forEach(function(li){ li.style.transitionDelay = '0s'; });
+      }
+    }
+
+    btn.addEventListener('click', function(){ abrir(!panel.classList.contains('abierto')); });
+
+    enlaces.forEach(function(a){
+      a.addEventListener('click', function(e){
+        var dest = document.querySelector(a.getAttribute('href'));
+        abrir(false);
+        if(dest){
+          e.preventDefault();
+          setTimeout(function(){
+            window.scrollTo({top: dest.getBoundingClientRect().top + window.scrollY - 6, behavior:'smooth'});
+          }, 280);
+        }
+      });
+    });
+
+    panel.addEventListener('click', function(e){ if(e.target === panel) abrir(false); });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && panel.classList.contains('abierto')) abrir(false);
+    });
+
+    if('IntersectionObserver' in window){
+      var mapa = {};
+      enlaces.forEach(function(a){
+        var sec = document.querySelector(a.getAttribute('href'));
+        if(sec) mapa[sec.id] = a;
+      });
+      var obs = new IntersectionObserver(function(entradas){
+        entradas.forEach(function(en){
+          var a = mapa[en.target.id];
+          if(!a) return;
+          if(en.isIntersecting){
+            enlaces.forEach(function(x){ x.classList.remove('is-active'); });
+            a.classList.add('is-active');
+          }
+        });
+      }, {rootMargin:'-45% 0px -45% 0px', threshold:0});
+      Object.keys(mapa).forEach(function(id){
+        var sec = document.getElementById(id);
+        if(sec) obs.observe(sec);
+      });
+    }
+
+    btn.classList.add('is-ready');
+  }
   </script>
 
 </body>
