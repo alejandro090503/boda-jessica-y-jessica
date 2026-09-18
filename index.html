@@ -2384,7 +2384,7 @@
     /* ── GALLERY WHEEL 3D (drag para girar) ── */
     #galeria-wheel{padding:72px 20px 80px;background:linear-gradient(180deg,var(--bg) 0%,var(--crema) 100%);text-align:center;overflow:hidden;}
     #galeria-wheel .label,#galeria-wheel .title,#galeria-wheel .subtitle{padding:0 24px;}
-    .wheel-scene{position:relative;width:100%;height:520px;margin:40px auto 0;perspective:1400px;transform-style:preserve-3d;overflow:visible;}
+    .wheel-scene{position:relative;width:100%;height:520px;margin:40px auto 0;perspective:1900px;transform-style:preserve-3d;overflow:visible;}
     .wheel-ring{position:absolute;width:100%;height:100%;transform-style:preserve-3d;cursor:grab;}
     .wheel-ring.dragging{cursor:grabbing;}
     .wheel-card{position:absolute;width:200px;height:280px;left:50%;top:50%;margin-left:-100px;margin-top:-140px;border-radius:18px;overflow:hidden;border:2px solid rgba(235,160,191,.5);box-shadow:0 12px 40px rgba(58,48,40,.2);user-select:none;-webkit-user-select:none;}
@@ -3929,9 +3929,10 @@
           <div class="wheel-card"><img src="galeria/foto-10.jpeg" alt="Jess y Jeszy" /></div>
           <div class="wheel-card"><img src="galeria/foto-11.jpeg" alt="Jess y Jeszy" /></div>
           <div class="wheel-card"><img src="galeria/foto-12.jpeg" alt="Jess y Jeszy" /></div>
-        </div>
-        </div>
-        </div>
+          <div class="wheel-card"><img src="galeria/foto-13.jpeg" alt="Jess y Jeszy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-14.jpeg" alt="Jess y Jeszy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-15.jpeg" alt="Jess y Jeszy" /></div>
+          <div class="wheel-card"><img src="galeria/foto-16.jpeg" alt="Jess y Jeszy" /></div>
         </div>
       </div>
       <p class="gal-hint rv">Arrastra para girar</p>
@@ -4934,7 +4935,10 @@
     var cards = ring.querySelectorAll('.wheel-card');
     var n = cards.length;
     if (!n) return;
-    var radius = 420;
+    // radio calculado para que las tarjetas NUNCA se traslapen:
+    // la cuerda entre dos tarjetas contiguas debe superar su ancho + holgura.
+    var cardW  = parseFloat(getComputedStyle(cards[0]).width) || 200;
+    var radius = Math.max(420, Math.ceil((cardW + 34) / (2 * Math.tan(Math.PI / n))));
     var rot = 0, vel = 0, isDrag = false, startX = 0, startRot = 0, lastX = 0, rafId = null;
 
     cards.forEach(function(card, i){
