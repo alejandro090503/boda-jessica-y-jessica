@@ -3210,6 +3210,10 @@
       text-transform: none;
       color: rgba(58,48,40,.72);
     }
+
+    /* ── Mesa de regalos propia: monograma en vez de logo de tienda ── */
+    .pi-gr-logo--monograma { height: 62px; }
+    .pi-gr-logo--monograma svg { height: 62px; width: 200px; max-width: 100%; }
   </style>
 </head>
 <body>
@@ -3930,11 +3934,21 @@
               </div>
 
               <div class="pi-gr-slide">
-                <div class="pi-gr-logo"><img src="mercadolibre-logo.png" alt="Mercado Libre" width="400" height="162" decoding="async"></div>
-                <div class="pi-gr-title">Mesa de regalos</div>
-                <div class="pi-gr-desc">Nuestra lista en Mercado Libre<br>Envío directo a las novias</div>
-                <!-- TODO: pegar aquí el link de la mesa de Mercado Libre -->
-                <a class="pi-gr-btn" href="#" aria-disabled="true" tabindex="-1" style="pointer-events:none;opacity:.5;cursor:default;">Disponible muy pronto</a>
+                <div class="pi-gr-logo pi-gr-logo--monograma" aria-hidden="true">
+                  <svg viewBox="0 0 200 72" fill="none">
+                    <path d="M18 40 C34 22 54 18 72 24" stroke="var(--gold)" stroke-width="1.1" stroke-linecap="round" opacity=".75"/>
+                    <path d="M182 40 C166 22 146 18 128 24" stroke="var(--gold)" stroke-width="1.1" stroke-linecap="round" opacity=".75"/>
+                    <circle cx="26" cy="43" r="2.4" fill="var(--gold-light)" opacity=".85"/>
+                    <circle cx="174" cy="43" r="2.4" fill="var(--gold-light)" opacity=".85"/>
+                    <circle cx="44" cy="27" r="1.7" fill="var(--menta)" opacity=".8"/>
+                    <circle cx="156" cy="27" r="1.7" fill="var(--menta)" opacity=".8"/>
+                    <text x="100" y="50" text-anchor="middle"
+                          font-family="'Great Vibes', cursive" font-size="46" fill="var(--accent)">J &amp; J</text>
+                  </svg>
+                </div>
+                <div class="pi-gr-title">Nuestra mesa de regalos</div>
+                <div class="pi-gr-desc">La lista que armamos con cariño<br>para empezar esta nueva etapa</div>
+                <a class="pi-gr-btn" href="https://hare-ywj3kh.my.canva.site/" target="_blank" rel="noopener noreferrer">Ver nuestra mesa</a>
               </div>
 
             </div>
